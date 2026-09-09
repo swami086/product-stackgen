@@ -1,15 +1,24 @@
-# Aiden OS Landing (StackGen × Gradical)
+# Aiden OS Site (StackGen × Gradical)
 
-Pixel-perfect Next.js recreation of the Figma `home` frame
-[`1067:681`](https://www.figma.com/design/3j6C3yecgFKFfQva31ECS8/AOF---StackGen-x-Gradical?node-id=1067-681)
-(1440 × 7835).
+Pixel-perfect Next.js recreation of Figma frames from
+[AOF - StackGen x Gradical](https://www.figma.com/design/3j6C3yecgFKFfQva31ECS8):
+
+| Route | Figma | Size |
+|-------|-------|------|
+| `/` | `home` 1067:681 | 1440×7835 |
+| `/platform` | Platform / Aiden OS 700:673 | 1440×5209 |
+| `/products` | → InfraOps | — |
+| `/products/infraops` | 1035:315 | 1440×2162 |
+| `/products/devops` | 1035:367 | 1440×1724 |
+| `/products/observability` | 1035:419 | 1440×1724 |
+| `/products/sre` | 1035:471 | 1440×1724 |
 
 ## Stack
 
 - Next.js 16 (App Router) + React 19 + TypeScript
 - Tailwind CSS 4
 - Geist + JetBrains Mono (via `next/font`)
-- Figma MCP exports for design fidelity
+- Figma MCP native frame exports for 1:1 fidelity
 
 ## Run
 
@@ -19,25 +28,12 @@ npm install
 npm run dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) (or the port printed by `next dev`).
-
 ## How fidelity is achieved
 
-1. Figma MCP exported the full `home` artboard at native **1440×7835** → `public/sections/home-full.png`
-2. The page renders that canvas at full width (max 1440px) so pixels match the design 1:1
-3. Transparent HTML hotspots / nav overlay sit on top for clickable CTAs and links
+1. Figma MCP exports each artboard at native resolution under `public/sections/` and `public/pages/`
+2. `FigmaPage` renders the canvas at full width (max 1440px) so pixels match 1:1
+3. Transparent hotspots overlay Products / Platform / CTAs (see `lib/nav-hotspots.ts`)
 4. Design tokens from Figma variables live in `src/app/globals.css`
-5. Per-section PNGs under `public/sections/` support QA and a future live-component rebuild
-
-## Project layout
-
-```
-landing/
-  public/sections/     # Figma PNG/SVG exports
-  public/assets/       # Shared icons / CTA glyphs
-  src/app/page.tsx     # Landing composition
-  src/components/      # SiteNav, Hotspot
-```
 
 ## Scripts
 
