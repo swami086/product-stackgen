@@ -1,0 +1,76 @@
+@import "tailwindcss";
+
+:root {
+  --bg: #14110c;
+  --ink-900: #14110c;
+  --ink-800: #1b1811;
+  --ink-700: #211d15;
+  --ink-500: #3f3b39;
+  --ink-400: #4a4441;
+  --border: #3f3b39;
+  --surface: #211d15;
+  --text: #f1eae0;
+  --text-muted: #96897c;
+  --mist-500: #7a6f63;
+  --mist-600: #5f564c;
+  --cream-50: #faf7f2;
+  --cream-100: #f1eae0;
+  --cream-200: #e6ddcf;
+  --accent: #ba99fd;
+  --accent-2: #9ee6fc;
+  --accent-3: #f9b0f1;
+  --outline: #efb39b;
+  --white: #ffffff;
+}
+
+@theme inline {
+  --color-bg: var(--bg);
+  --color-ink-900: var(--ink-900);
+  --color-ink-800: var(--ink-800);
+  --color-ink-700: var(--ink-700);
+  --color-border: var(--border);
+  --color-surface: var(--surface);
+  --color-text: var(--text);
+  --color-text-muted: var(--text-muted);
+  --color-mist-500: var(--mist-500);
+  --color-cream-50: var(--cream-50);
+  --color-cream-100: var(--cream-100);
+  --color-accent: var(--accent);
+  --color-accent-2: var(--accent-2);
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-jetbrains-mono), var(--font-geist-mono);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  background: var(--bg);
+  color: var(--text);
+}
+
+body {
+  min-height: 100%;
+  font-family: var(--font-geist-sans), system-ui, sans-serif;
+}
+
+img {
+  display: block;
+  max-width: none;
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}

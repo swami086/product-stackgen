@@ -1,0 +1,23 @@
+# OpenMemory - IDE/Assistant specific rules
+.cursor/rules/openmemory.mdc
+
+# OS / editor
+.DS_Store
+*.pem
+.idea/
+.vscode/
+
+# Next.js app (landing/)
+landing/node_modules/
+landing/.next/
+landing/out/
+landing/build/
+landing/coverage/
+landing/.vercel/
+landing/.env*
+landing/*.tsbuildinfo
+landing/next-env.d.ts
+landing/npm-debug.log*
+landing/yarn-debug.log*
+landing/yarn-error.log*
+landing/.pnpm-debug.log*
