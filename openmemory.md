@@ -1,40 +1,39 @@
 # Product_Stackgen — OpenMemory Guide
 
 ## Overview
-Next.js recreation of the StackGen × Gradical **Aiden OS** landing page from Figma file [AOF - StackGen x Gradical](https://www.figma.com/design/3j6C3yecgFKFfQva31ECS8) node `home` (`1067:681`, 1440×7835).
+Next.js recreation of the StackGen × Gradical **Aiden OS** site from Figma file [AOF - StackGen x Gradical](https://www.figma.com/design/3j6C3yecgFKFfQva31ECS8):
+- Home `1067:681` (1440×7835)
+- Platform + Product Pages `700:672` (Platform + 4 products)
 
 App lives in `landing/` (Next.js 16 App Router, React 19, Tailwind CSS 4, TypeScript).
 
 ## Architecture
-- **Pixel source of truth:** Figma MCP full-frame export at native 1440×7835 → `landing/public/sections/home-full.png`
-- **Interactive layer:** percentage-positioned hotspots + nav overlay matching Figma coordinates
+- **Pixel source of truth:** Native Figma MCP frame exports → `public/sections/` (home) and `public/pages/` (platform + products)
+- **Interactive layer:** `FigmaPage` + percentage hotspots (`Hotspot`) matching Figma coordinates
+- **Routes:** `/` home · `/platform` · `/products` → InfraOps · `/products/[slug]`
 - **Design tokens:** Figma variables (ink/cream/mist/accent palette, Geist + JetBrains Mono)
-- **Section exports:** `landing/public/sections/*.png` for per-section QA / future HTML rebuilds
 
 ## User Defined Namespaces
 - landing
 - design
 
 ## Components
-- `SiteNav` — interactive overlay for Figma Nav (`1067:683`)
+- `FigmaPage` — shared artboard renderer (Image + hotspots + SEO)
 - `Hotspot` — artboard-relative clickable regions
-- Landing page — composes full Figma render + SEO copy
+- `nav-hotspots` — home island nav + pill nav shared by platform/product frames
+- `products` — product page definitions + hotspot layouts
 
 ## Patterns
 - Design → code via Figma MCP `get_design_context` / `get_screenshot` / `get_variable_defs`
-- When a frame exceeds MCP context, split by direct children of `1067:709`
 - Prefer native-resolution screenshots (`maxDimension` ≥ longest edge) for pixel fidelity
-- Store remote Figma asset URLs locally under `public/` (expire ~7 days)
+- Products tab lands on InfraOps (Figma Products active state); Platform tab → `/platform`
 
-## Key Figma structure (`home`)
-| Node | Role | Size |
-|------|------|------|
-| 1067:683 | Nav | 848×57 |
-| 1067:710 | Hero | 1344×678 |
-| 1067:4557 | Offerings | 1344×1526 |
-| 1099:7715 | Shared World Model | 1344×1055 |
-| 1155:8531 | Expert Agents | 1344×667 |
-| 1204:9506 | Governed Orchestration | 1344×998 |
-| 1220:13436 | Insights | 1344×838 |
-| 1256:17433 | CTA | 1344×598 |
-| 1067:6310 | Footer | 1344×764 |
+## Key Figma frames
+| Node | Route | Size |
+|------|-------|------|
+| 1067:681 home | `/` | 1440×7835 |
+| 700:673 Platform / Aiden OS | `/platform` | 1440×5209 |
+| 1035:315 Product / InfraOps | `/products/infraops` | 1440×2162 |
+| 1035:367 Product / DevOps | `/products/devops` | 1440×1724 |
+| 1035:419 Product / Observability | `/products/observability` | 1440×1724 |
+| 1035:471 Product / SRE | `/products/sre` | 1440×1724 |

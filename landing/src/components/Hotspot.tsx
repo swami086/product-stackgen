@@ -1,4 +1,4 @@
-/** Percentage-positioned clickable region on the 1440×7835 Figma artboard. */
+/** Percentage-positioned clickable region on a Figma artboard. */
 export function Hotspot({
   href,
   label,
@@ -6,6 +6,8 @@ export function Hotspot({
   y,
   w,
   h,
+  artboardW = 1440,
+  artboardH = 7835,
 }: {
   href: string;
   label: string;
@@ -13,6 +15,8 @@ export function Hotspot({
   y: number;
   w: number;
   h: number;
+  artboardW?: number;
+  artboardH?: number;
 }) {
   return (
     <a
@@ -20,10 +24,10 @@ export function Hotspot({
       aria-label={label}
       className="absolute z-10"
       style={{
-        left: `${(x / 1440) * 100}%`,
-        top: `${(y / 7835) * 100}%`,
-        width: `${(w / 1440) * 100}%`,
-        height: `${(h / 7835) * 100}%`,
+        left: `${(x / artboardW) * 100}%`,
+        top: `${(y / artboardH) * 100}%`,
+        width: `${(w / artboardW) * 100}%`,
+        height: `${(h / artboardH) * 100}%`,
       }}
     />
   );
